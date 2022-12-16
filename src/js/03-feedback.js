@@ -22,11 +22,9 @@ const inputMail = document.querySelector('.feedback-form input');
 const inputText = document.querySelector('.feedback-form textarea');
 
 const STORAGE_KEY = 'feedback-form-state';
-let formData = {};
-// const formData = {};
-// розпарсені дані з локал сторадж або пустий обєкт
+const formData = {};
+
 const isThereDataInStorage = localStorage.getItem(STORAGE_KEY);
-// const localData = JSON.parse(isThereDataInStorage) ?? {};
 let localData = JSON.parse(isThereDataInStorage) || {};
 
 form.addEventListener('input', onFormInput);
@@ -42,7 +40,6 @@ if (isThereDataInStorage) {
 }
 
 function onFormInput(e) {
-  formData = { ...localData, [e.target.name]: e.target.value };
   formData[e.target.name] = e.target.value;
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
@@ -53,5 +50,4 @@ function onFormSubmit(e) {
   localStorage.removeItem(STORAGE_KEY);
   e.target.reset();
   localData = {};
-  //   console.log(localData);
 }
