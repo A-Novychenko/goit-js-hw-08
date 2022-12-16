@@ -1,6 +1,6 @@
 import Player from '@vimeo/player';
 
-const iframe = document.querySelector('iframe');
+const iframe = document.querySelector('#vimeo-player');
 const player = new Player(iframe);
 
 player.on('timeupdate', function (data) {
@@ -10,17 +10,15 @@ player.on('timeupdate', function (data) {
   );
 });
 
-player.getVideoTitle().then(function (title) {
-  console.log('title:', title);
-});
-
-const seconds = Number(localStorage.getItem('videoplayer-current-time'));
-player.setCurrentTime(seconds);
-//   .then(function (seconds) {})
+player.setCurrentTime(Number(localStorage.getItem('videoplayer-current-time')));
+//   .then(function (seconds) {
+//     console.log('player ARBITTEN!');
+//   })
 //   .catch(function (error) {
 //     switch (error.name) {
 //       case 'RangeError':
 //         // the time was less than 0 or greater than the video’s duration
+
 //         break;
 
 //       default:
