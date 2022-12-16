@@ -27,7 +27,7 @@ let formData = {};
 // розпарсені дані з локал сторадж або пустий обєкт
 const isThereDataInStorage = localStorage.getItem(STORAGE_KEY);
 // const localData = JSON.parse(isThereDataInStorage) ?? {};
-let localData = JSON.parse(isThereDataInStorage) ?? {};
+let localData = JSON.parse(isThereDataInStorage) || {};
 
 form.addEventListener('input', onFormInput);
 form.addEventListener('submit', onFormSubmit);
