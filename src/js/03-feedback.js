@@ -5,10 +5,10 @@ const inputMail = document.querySelector('.feedback-form input');
 const inputText = document.querySelector('.feedback-form textarea');
 
 const STORAGE_KEY = 'feedback-form-state';
-const formData = {};
+let formData = {};
 
 const isThereDataInStorage = localStorage.getItem(STORAGE_KEY);
-const localData = JSON.parse(isThereDataInStorage) || {};
+let localData = JSON.parse(isThereDataInStorage) || {};
 
 form.addEventListener('input', throttle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
@@ -33,6 +33,10 @@ function onFormInput(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
+  if (inputMail.value === '' || inputText.value === '') {
+    alert('Заповніть всі поля!');
+    return;
+  }
 
   const { email, message } = e.currentTarget.elements;
   console.log({
@@ -41,5 +45,7 @@ function onFormSubmit(e) {
   });
 
   localStorage.removeItem(STORAGE_KEY);
+  localData = {};
+  formData = {};
   e.currentTarget.reset();
 }
